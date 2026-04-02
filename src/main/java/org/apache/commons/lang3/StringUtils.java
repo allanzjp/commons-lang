@@ -537,15 +537,13 @@ public class StringUtils {
         if (isEmpty(str)) {
             return str;
         }
-        final int firstCodepoint = str.codePointAt(0);
-        final int newCodePoint = Character.toTitleCase(firstCodepoint);
-        if (firstCodepoint == newCodePoint) {
+        final char firstChar = str.charAt(0);
+        final char newChar = (char) Character.toTitleCase(firstChar);
+        if (firstChar == newChar) {
             // already capitalized
             return str;
         }
-        final int[] newCodePoints = str.codePoints().toArray();
-        newCodePoints[0] = newCodePoint; // copy the first code point
-        return new String(newCodePoints, 0, newCodePoints.length);
+        return newChar + str.substring(1);
     }
 
     /**
